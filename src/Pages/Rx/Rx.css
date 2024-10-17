@@ -1,0 +1,138 @@
+.Rx
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Header
+{
+    height: 7%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.rx-main
+{
+    height: 93%;
+    width: 100%;
+    display: flex;
+    border-top: 1px solid gray;
+}
+
+.rx-list
+{
+    height: 100%;
+    width: 27%;
+    border-right: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rx-list1
+{
+    height: 95%;
+    width: 85%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.rx-list-drug
+{
+    height: 100%;
+    width: 73%;
+    
+}
+
+.Rx-title2
+{
+    color: var(--unnamed-color-0f0b11);
+font: normal normal 600 18px/30px Poppins;
+letter-spacing: 0px;
+color: #0F0B11;
+opacity: 1;
+}
+
+.head{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plus
+{
+    height: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:#007965 ;
+}
+
+.search
+{
+    height: 5%;
+    width: 100%;
+    display: flex;
+    border: 2px solid gray;
+    border-radius: 7px;
+}
+
+.searchicon
+{
+    height: 100%;
+    width: 10%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchtext
+{
+    border: none;
+    width: 90%;
+    height: 90% ;
+    outline: none;
+}
+
+.rx-container
+{
+
+border-radius: 8px;
+opacity: 1;
+height: 80%;
+width: 100%;
+padding-top: 4%;
+justify-content: center;
+align-items: center;
+gap: 40px;
+}
+
+.each{
+border-radius: 8px;
+opacity: 1;
+height: 13%;
+gap: 2%;
+width: 100%;
+}
+
+.each1
+{
+border-radius: 8px;
+opacity: 1;
+height: 90%;
+width: 100%;
+background-color: red;
+}
