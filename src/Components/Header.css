@@ -1,10 +1,12 @@
 .backicon
 {
-    height: 70%;
-    width: 20%;
+    height: 60%;
+    width: 7%;
     font-size: 20px;
     background-color: #e3e3e3;
     border-radius: 50%;
+    margin-right: 20px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +16,7 @@
 .Header-page
 {
     height: 100%;
-    width: 96%;
+    width: 97%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,31 +30,42 @@ font: normal normal 600 20px/30px Poppins;
 letter-spacing: 0px;
 color: #0F0B11;
 opacity: 1;
+width: 60%;
 }
 
 .part1
 {
     height: 100%;
-    width: 10%;
+    width: 30%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .part2
 {
     height: 100%;
-    width: 5%;
+    width: 3%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
+
+.part3
+{
+    height: 100%;
+    width: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
 
 .profile
 {
     height: 100%;
-    width: 40%;
+    width: 100%;
     font-size: 30px;
     display: flex;
-    justify-content: end;
-    align-items: end;
+    align-items: center;
 }

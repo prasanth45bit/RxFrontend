@@ -1,0 +1,68 @@
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 18%;
+    align-items: center;
+    /* background-color: rebeccapurple; */
+    height: 100%;
+    /* margin-bottom: 10px; */
+    align-items: center;
+  }
+  
+  .tabs button {
+    background-color: #f8f8f8;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0e1824;
+  }
+  
+ 
+  
+  .input-div {
+    display: flex;
+    width: 100%;  
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  .selected-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .tabs button.active {
+    background-color: #007965;
+    color: #fff;
+    border: none;
+  }
+
+  .search-feild
+  {
+    width: 82%;
+    height: 50%;
+  
+
+  }
+
+  .search-text
+  {
+    width: 100%;
+  }
+
+  .css-ot336b-MuiInputBase-root-MuiOutlinedInput-root
+  {
+    border: none;
+    outline: none; 
+    background-color: transparent;
+  }

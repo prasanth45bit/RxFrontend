@@ -1,0 +1,82 @@
+.RxDrug
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Headerpage2
+{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header2
+{
+    height: 8%;
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+.page
+{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Main-container
+{
+    height: 96%;
+    width: 97%;
+}
+
+.search-bar
+{
+    height: 7%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.showSelectedData
+{
+    height: 92%;
+    width: 100%;
+}
+
+.data-table
+{
+    height: 92%;
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.drug-count
+{
+    height: 8%;
+    width: 100%;
+    color: gray;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.table-main
+{
+    height: 100%;
+    width: 100%;
+}
+

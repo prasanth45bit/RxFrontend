@@ -1,38 +1,42 @@
 import React from 'react'
 import './Login.css';
-
+import { Box } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 function Login() {
+
+
+  const navigate =useNavigate()
   return (
-    <div className='Login'>
-        <div className='left'>
-        </div>
-        <div className='right'>
-            <div className='login-container'>
-            <div className='container1'>
-            <div className='container'>
-            <div className='logo'></div>
-            <div className='welcome'>Welcome</div>
-            </div>
-            <div className='input-feild'>
-            <div className='label-input'>
+    <Box className='Login'>
+        <Box className='left'>
+        </Box>
+        <Box className='right'>
+            <Box className='login-container'>
+            <Box className='container1'>
+            <Box className='container'>
+            <Box className='logo'></Box>
+            <Box className='welcome'>Welcome</Box>
+            </Box>
+            <Box className='input-feild'>
+            <Box className='label-input'>
             <label>Email</label>
             <input type="text" id="username" name="username" required />
-            </div>
-            <div className='label-input'>
+            </Box>
+            <Box className='label-input'>
             <label>Password</label>
             <input type="password" id="password" name="password" required />
-            </div>
-            </div>
-            <div className='container'>
-            <div className='forget'>Forgot Password?</div>
-            <button className='sign-in'>
+            </Box>
+            </Box>
+            <Box className='container'>
+            <Box className='forget'>Forgot Password?</Box>
+            <button className='sign-in' onClick={() => navigate('/Rx')}>
             <p>Sign in</p>
             </button> 
-            </div>
-            </div>
-            </div>
-        </div>
-    </div>
+            </Box>
+            </Box>
+            </Box>
+        </Box>
+    </Box>
   )
 }
 
