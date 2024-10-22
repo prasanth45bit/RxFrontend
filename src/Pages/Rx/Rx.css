@@ -399,8 +399,10 @@ height: 50%;
     border-bottom-right-radius: 10px;
     display: flex;
     align-items: center;
+}
+.container-bottom.selected
+{
     border-top: 1px solid gray;
-
 }
 
 .plus-new

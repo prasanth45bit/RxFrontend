@@ -65,11 +65,12 @@
 }
 .drug-count
 {
-    height: 8%;
+    height: 7%;
     width: 100%;
     color: gray;
     font-size: 16px;
     font-weight: 600;
+    margin-top: 5px;
     display: flex;
     align-items: center;
 }

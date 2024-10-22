@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Android12Switch = styled(Switch)(({ theme }) => ({
   padding: 8,
@@ -52,11 +53,27 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const ToggleSwitch = () => {
-  const [isChecked, setIsChecked] = useState(false);
+const ToggleSwitch = ({ status, id }) => {
+  const [isChecked, setIsChecked] = useState(status);
+  const [error, setError] = useState(null);
 
-  const handleToggle = (event) => {
-    setIsChecked(event.target.checked);
+  const handleToggle = async () => {
+    const newStatus = !isChecked;
+    try {
+      const response = await axios.post('http://localhost:5000/rx_group/rx_active', {
+        rx_group_id: id,
+        active: newStatus, 
+      });
+
+      if (response.status === 200) {
+        setIsChecked(newStatus); 
+      } else {
+        setError('Error updating RX data');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An error occurred while updating RX data.');
+    }
   };
 
   return (
