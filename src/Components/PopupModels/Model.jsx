@@ -1,6 +1,5 @@
 import React from 'react';
-import './Madel.css';
-
+import './Madel.css'
 const Modal = ({ show, onClose, children }) => {
   if (!show) {
     return null;

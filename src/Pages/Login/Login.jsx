@@ -18,12 +18,9 @@ function Login() {
       });
   
       if (response.status === 200) {
-        // Store the response data in local storage
         localStorage.setItem('doctorData', JSON.stringify(response.data));
         navigate('/Rx');
-  
-        // Retrieve the data from local storage
-        const doctorData = localStorage.getItem('doctorData');
+          const doctorData = localStorage.getItem('doctorData');
         if (doctorData) {
           const parsedData = JSON.parse(doctorData);
           console.log(parsedData.doctor.id); 

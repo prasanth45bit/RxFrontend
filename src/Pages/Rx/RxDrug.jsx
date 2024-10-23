@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Header2 from '../../Components/Header2';
+import Header2 from '../../Components/Header/Header2';
 import './RxDrug.css';
 import { Box } from '@mui/material';
-import LimitTags from '../../Components/Search';
-import CustomTable from '../../Components/Table';
+import LimitTags from '../../Components/Search/Search';
+import CustomTable from '../../Components/Table/Table';
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from '../../Components/Datacontaxt';
 
@@ -18,6 +18,8 @@ function RxDrug() {
   }, [SelectedRx]);
 
   const groupName = selectedRxGroup.length > 0 ? selectedRxGroup[0]?.name || 'No name available' : 'No Rx Group Selected';
+  const groupid = selectedRxGroup.length > 0 ? selectedRxGroup[0]?.id || 'No name available' : 'No Rx Group Selected';
+
 
   return (
     <Box className='RxDrug'>
@@ -30,14 +32,14 @@ function RxDrug() {
       <Box className='page'>
         <Box className='Main-container'>
           <Box className='search-bar'>
-            <LimitTags setSelectedData={setSelectedData} />
+            <LimitTags RXGROUPID={groupid} />
           </Box>
 
           <Box className='showSelectedData'>
             {selectedData.length > 0 ? (
               <Box className='table-main'>
                 <Box className='drug-count'>Selected Drugs ({selectedData.length})</Box>
-                <Box className='data-table'><CustomTable selectedData={selectedData} /></Box>
+                <Box className='data-table'><CustomTable groupId={groupid}/></Box>
               </Box>
             ) : (
               <p>No data selected</p>

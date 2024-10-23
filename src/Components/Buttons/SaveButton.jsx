@@ -1,5 +1,5 @@
 import React from 'react'
-import './Madel.css'
+import '../PopupModels/Madel.css'
 
 function SaveButton() {
   return (

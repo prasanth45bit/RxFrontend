@@ -3,7 +3,7 @@ import { IoIosArrowBack, IoMdAdd } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import './Header.css'
 import { Box } from '@mui/material';
-import SaveButton from './SaveButton';
+import SaveButton from '../Buttons/SaveButton';
 import { useNavigate } from "react-router-dom";
 
 function Header2({GroupName}) {

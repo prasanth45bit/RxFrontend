@@ -5,9 +5,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from 'axios';
 import "./Search.css";
 
-export default function LimitTags({ setSelectedData }) {
+export default function LimitTags({ RXGROUPID }) {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [filter, setFilter] = useState("All");
+  const [GROUPID, setGROUPID] = useState(RXGROUPID);
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [drugData, setDrugData] = useState([]); 
   const [rxDrugData, setRxDrugData] = useState([]); 
@@ -22,10 +23,11 @@ export default function LimitTags({ setSelectedData }) {
         if (response.status === 200) {
           const formattedData = response.data.map(item => ({
             title: `${item.drug?.drug_name || 'Unknown Drug'} ${item.drug_varient || ''}`,
-            id: item.id || 'Unknown ID',
+            id: item.id,
             doseM: item.dose_m || 0,
             doseAN: item.dose_an || 0,
             doseN: item.dose_n || 0,
+            drugname: item.drug?.drug_name || 'Unknown Drug',
             variant: item.drug_varient || 'N/A',
             category: item.Category?.catagory_name || 'Unknown Category',
             time: item.Time?.time || 'N/A',
@@ -49,7 +51,7 @@ export default function LimitTags({ setSelectedData }) {
   
   useEffect(() => {
     const fetchRxData = async () => {
-      if (!doctorId) return; 
+      if (!doctorId) return;
       try {
         const response = await axios.post('http://localhost:5000/rx_group/get_rx', { doctor_id: doctorId });
         if (response.status === 200) {
@@ -57,21 +59,31 @@ export default function LimitTags({ setSelectedData }) {
 
           response.data.forEach(rxGroup => {
             if (rxGroup.Rx_group_drugs && rxGroup.Rx_group_drugs.length > 0) {
+              const group = {
+                title: rxGroup.rx_group_name,  
+                drugs: [],  
+                id: rxGroup.id, 
+              };
+
               rxGroup.Rx_group_drugs.forEach(drug => {
                 const formattedDrug = {
-                  title: `${drug.Drug_varient.drug?.drug_name || 'Unknown Drug'}`, // Show only the drug name
-                  id: drug.id || 'Unknown ID',
+                  id: drug.drug_varient_id,
+                  drug_id: drug.drug_varient_id,
                   doseM: drug.dose_m || 0,
                   doseAN: drug.dose_an || 0,
                   doseN: drug.dose_n || 0,
+                  drugname: drug.Drug_varient.drug.drug_name,
                   variant: drug.Drug_varient.drug_varient || 'N/A',
                   time: drug.drugTime?.time || 'N/A',
                   when: drug.drugWhen?.when || 'N/A',
                   frequency: drug.drugFrequency?.frequency || 'N/A',
                   duration: `${drug.drugDuration?.duration_count || 0} ${drug.drugDuration?.duration_type || 'days'}`,
+                  groupId: rxGroup.id, 
                 };
-                formattedRxData.push(formattedDrug);
+                group.drugs.push(formattedDrug); 
               });
+
+              formattedRxData.push(group);
             }
           });
 
@@ -91,7 +103,7 @@ export default function LimitTags({ setSelectedData }) {
     let updatedOptions = [];
     
     if (filter === "All") {
-      updatedOptions = [...drugData, ...rxDrugData]; 
+      updatedOptions = [...drugData, ...rxDrugData];
     } else if (filter === "Drugs") {
       updatedOptions = drugData; 
     } else if (filter === "RxGroup") {
@@ -101,27 +113,31 @@ export default function LimitTags({ setSelectedData }) {
     setFilteredOptions(updatedOptions);
   }, [filter, drugData, rxDrugData]);
 
-  const handleChange = (event, newValue) => {
-    const selectedData = [];
-
-    newValue.forEach(selected => {
-      if (rxDrugData.some(rxDrug => rxDrug.title === selected.title)) {
-        const correspondingRxGroup = rxDrugData.find(rxDrug => rxDrug.title === selected.title);
-        if (correspondingRxGroup) {
-          const associatedDrugs = rxDrugData.filter(rxDrug => rxDrug.title === correspondingRxGroup.title);
-          associatedDrugs.forEach(drug => {
-            if (!selectedData.some(existing => existing.id === drug.id)) {
-              selectedData.push(drug);
-            }
-          });
+  const handleChange = async (newValue) => {
+    try {
+      const selectedIds = newValue.map(option => {
+        if (option.drugs) {  
+          return option.drugs.map(drug => drug.drug_id);
         }
-      } else {
-        selectedData.push(selected);
-      }
-    });
+        return option.id; 
+      }).flat(); 
 
-    setSelectedDrugs(newValue);
-    setSelectedData(selectedData);
+      await axios.post('http://localhost:5000/rx_group/post_rx_drug', {
+        rx_group_id: GROUPID,
+        drug_varient_ids: selectedIds,
+      });
+      console.log('Data submitted successfully');
+    } catch (error) {
+      if (error.response) {
+        console.error('Error response data:', error.response.data);
+        console.error('Error response status:', error.response.status);
+        console.error('Error response headers:', error.response.headers);
+      } else if (error.request) {
+        console.error('Error request:', error.request);
+      } else {
+        console.error('Error message:', error.message);
+      }
+    }
   };
 
   return (
@@ -134,7 +150,10 @@ export default function LimitTags({ setSelectedData }) {
         options={filteredOptions}
         getOptionLabel={(option) => option.title}
         value={selectedDrugs}
-        onChange={handleChange}
+        onChange={(event, newValue) => {
+          setSelectedDrugs(newValue);
+          handleChange(newValue);
+        }}
         renderTags={() => null}
         renderInput={(params) => (
           <TextField
