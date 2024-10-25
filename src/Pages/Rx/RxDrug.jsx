@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { useDataContext } from '../../Components/Datacontaxt';
 
 function RxDrug() {
-  const navigate = useNavigate();
   const { SelectedRx, setSelectedRx } = useDataContext();
   const [selectedData, setSelectedData] = useState([null]);
+  const [render, setRender] = useState(1);
   const [selectedRxGroup, setSelectedRxGroup] = useState(SelectedRx || []);
 
   useEffect(() => {
@@ -32,14 +32,14 @@ function RxDrug() {
       <Box className='page'>
         <Box className='Main-container'>
           <Box className='search-bar'>
-            <LimitTags RXGROUPID={groupid} />
+            <LimitTags RXGROUPID={groupid} render={render} setRender={setRender}/>
           </Box>
 
           <Box className='showSelectedData'>
             {selectedData.length > 0 ? (
               <Box className='table-main'>
                 <Box className='drug-count'>Selected Drugs ({selectedData.length})</Box>
-                <Box className='data-table'><CustomTable groupId={groupid}/></Box>
+                <Box className='data-table'><CustomTable groupId={groupid} render={render} setRender={setRender}/></Box>
               </Box>
             ) : (
               <p>No data selected</p>
@@ -50,5 +50,7 @@ function RxDrug() {
     </Box>
   );
 }
+
+
 
 export default RxDrug;

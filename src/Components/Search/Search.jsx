@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from 'axios';
 import "./Search.css";
 
-export default function LimitTags({ RXGROUPID }) {
+export default function LimitTags({ RXGROUPID , render, setRender}) {
   const [selectedDrugs, setSelectedDrugs] = useState([]);
   const [filter, setFilter] = useState("All");
   const [GROUPID, setGROUPID] = useState(RXGROUPID);
@@ -127,6 +127,8 @@ export default function LimitTags({ RXGROUPID }) {
         drug_varient_ids: selectedIds,
       });
       console.log('Data submitted successfully');
+      setSelectedDrugs([]);
+      setRender(1)
     } catch (error) {
       if (error.response) {
         console.error('Error response data:', error.response.data);
